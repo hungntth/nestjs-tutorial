@@ -21,6 +21,7 @@ export class CurrentUserMiddleware implements NestMiddleware {
     const checkAuth =
       !authHeader || isArray(authHeader) || !authHeader.startsWith('Bearer ');
     if (checkAuth) {
+      req.currentUser = null;
       return next();
     } else {
       try {
@@ -31,6 +32,7 @@ export class CurrentUserMiddleware implements NestMiddleware {
         return next();
       } catch (error) {
         console.log(error);
+        req.currentUser = null;
         return next();
       }
     }
