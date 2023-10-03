@@ -9,6 +9,7 @@ async function bootstrap() {
   app.use(helmet());
   app.use(compression());
 
+  app.setGlobalPrefix('api/v1')
   await app.listen(3000);
 }
 bootstrap();
