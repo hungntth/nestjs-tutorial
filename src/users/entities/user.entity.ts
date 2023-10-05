@@ -1,3 +1,4 @@
+import { CategoryEntity } from 'src/categories/entities/category.entity';
 import { Roles } from '../../utility/common/user-roles.enum';
 import {
   Entity,
@@ -5,7 +6,8 @@ import {
   Column,
   CreateDateColumn,
   Timestamp,
-  UpdateDateColumn
+  UpdateDateColumn,
+  OneToMany
 } from 'typeorm';
 
 @Entity('users')
@@ -24,4 +26,7 @@ export class UserEntity {
   createAt: Timestamp;
   @UpdateDateColumn()
   updateAt: Timestamp;
+
+  @OneToMany(() => CategoryEntity, (cat) => cat.addedBy)
+  categories: CategoryEntity[];
 }
