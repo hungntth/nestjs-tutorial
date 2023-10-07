@@ -22,8 +22,8 @@ export class CategoriesService {
     return this.categoryRepo.find();
   }
 
-  findOne(id: number) {
-    return this.categoryRepo.findOne({
+  async findOne(id: number) {
+    const category = await this.categoryRepo.findOne({
       where: {
         id,
       },
@@ -36,6 +36,8 @@ export class CategoriesService {
         },
       },
     });
+    if (!category) throw new NotFoundException('Loại sản phẩm không tồn tại');
+    return category;
   }
 
   async update(id: number, fields: Partial<UpdateCategoryDto>) {
