@@ -30,5 +30,5 @@ export class CreateProductDto {
 
   @IsNotEmpty({ message: 'Category không được để trống' })
   @IsNumber({}, { message: 'Category sai định dạng' })
-  category: number;
+  categoryId: number;
 }
