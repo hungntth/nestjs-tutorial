@@ -10,6 +10,7 @@ import {
   OneToMany
 } from 'typeorm';
 import { ProductEntity } from 'src/products/entities/product.entity';
+import { ReviewEntity } from 'src/review/entities/review.entity';
 
 @Entity('users')
 export class UserEntity {
@@ -33,4 +34,7 @@ export class UserEntity {
 
   @OneToMany(() => ProductEntity, (prod) => prod.addedBy)
   products: ProductEntity[];
+
+  @OneToMany(() => ReviewEntity, (revw) => revw.user)
+  reviews: ReviewEntity[];
 }
